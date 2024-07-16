@@ -15,6 +15,7 @@ window.addEventListener('load', function() {
                 console.error(err);
             }
         });
+        videoElement.style.display = 'block';
     });
     
     async function fetchProductDetails(barcode) {

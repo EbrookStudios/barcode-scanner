@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barcode Scanner</title>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@zxing/library@0.18.6/umd/index.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Scan Barcode or QR Code</h1>
-        <video id="preview"></video>
-        <button id="start-button">Start Scanner</button>
-        <div id="product-info"></div>
+    <h1>Scan Barcode or QR Code</h1>
+    <button id="start-button">Start Scanner</button>
+    <div id="videoContainer">
+        <video id="preview" width="300" height="200" style="display:none;"></video>
     </div>
-    <script src="https://unpkg.com/@zxing/library@latest"></script>
-    <script src="./scripts.js"></script>
+    <div id="product-info"></div>
+    <script src="script.js"></script>
 </body>
 </html>
