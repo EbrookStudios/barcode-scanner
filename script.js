@@ -3,19 +3,41 @@ window.addEventListener('load', function() {
     const videoElement = document.getElementById('preview');
     const startButton = document.getElementById('start-button');
     const productInfo = document.getElementById('product-info');
+    const actionButtons = document.getElementById('action-buttons');
+    const saveButton = document.getElementById('save-button');
+    const resetButton = document.getElementById('reset-button');
     
+    let scanning = false;
+
     startButton.addEventListener('click', () => {
+        if (scanning) return;
+        scanning = true;
+
         codeReader.decodeFromVideoDevice(null, 'preview', async (result, err) => {
             if (result) {
+                codeReader.reset();
+                scanning = false;
                 alert(`Scanned Code: ${result.text}`);
                 const productDetails = await fetchProductDetails(result.text);
                 displayProductDetails(productDetails);
+                actionButtons.style.display = 'block';
             }
             if (err && !(err instanceof ZXing.NotFoundException)) {
                 console.error(err);
             }
         });
         videoElement.style.display = 'block';
+    });
+
+    saveButton.addEventListener('click', () => {
+        // Add logic to save the scanned code
+        alert('Code saved!');
+    });
+
+    resetButton.addEventListener('click', () => {
+        productInfo.innerHTML = '';
+        actionButtons.style.display = 'none';
+        videoElement.style.display = 'none';
     });
     
     async function fetchProductDetails(barcode) {
